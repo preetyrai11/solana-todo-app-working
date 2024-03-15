@@ -3,14 +3,16 @@ import { useTodo } from '../hooks/todo'
 import Loading from '../components/Loading'
 import TodoSection from '../components/todo/TodoSection'
 import styles from '../styles/Home.module.css'
+import { useState, useEffect } from 'react'
 
 
 const Home = () => {
     const { initialized, initializeStaticUser, loading, transactionPending, completedTodos, incompleteTodos, addTodo, markTodo, removeTodo, markStaticTodo,removeStaticTodo, addStaticTodo, input,  handleChange } = useTodo()
-
-
+    
     return (
+        
         <div className={styles.container}>
+          
             <div className={styles.actionsContainer}>
                 {initialized ? (
                     <div className={styles.todoInput}>
@@ -29,8 +31,14 @@ const Home = () => {
                         Initialize
                     </button>
                 )}
-                {/* <WalletMultiButton /> */}
+
+                <div>
+                
+                  <WalletMultiButton /> 
+                </div>
             </div>
+            
+
 
             <div className={styles.mainContainer}>
                 <Loading loading={loading}>
@@ -40,6 +48,7 @@ const Home = () => {
                 </Loading>
             </div>
         </div>
+        
     )
 }
 
