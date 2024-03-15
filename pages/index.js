@@ -8,7 +8,18 @@ import { useState, useEffect } from 'react'
 
 const Home = () => {
     const { initialized, initializeStaticUser, loading, transactionPending, completedTodos, incompleteTodos, addTodo, markTodo, removeTodo, markStaticTodo,removeStaticTodo, addStaticTodo, input,  handleChange, initializeUser } = useTodo()
-    
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+      setIsMounted(true);
+     }, []);
+
+     if (!isMounted) {
+      return null;
+    }
+
+   
+
     return (
         
         <div className={styles.container}>
@@ -18,7 +29,7 @@ const Home = () => {
                     <div className={styles.todoInput}>
                         <div className={`${styles.todoCheckbox} ${styles.checked}`} />
                         <div className={styles.inputContainer}>
-                            <form onSubmit={addStaticTodo}>
+                            <form onSubmit={addTodo}>
                                 <input value = {input} onChange={handleChange} id={styles.inputField} type="text" placeholder='Create a new todo...' />
                             </form>
                         </div>
@@ -32,10 +43,10 @@ const Home = () => {
                     </button>
                 )}
 
-                <div>
+               
+               <WalletMultiButton />
+                  
                 
-                  <WalletMultiButton /> 
-                </div>
             </div>
             
 
